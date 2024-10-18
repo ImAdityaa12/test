@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .btn {
+        @apply py-2 px-6 font-medium text-base rounded-[4px] flex gap-[10px] items-center;
+    }
+
+    .btn-text{
+        @apply py-2 px-1 font-medium text-base rounded-[4px] flex gap-[10px] items-center;
+    }
+
+    .btn-primary{
+        @apply bg-[#002FDF] text-white;
+    }
+
+    .wrapper{
+        @apply max-w-[1440px] mx-auto h-full px-6 2xl:px-0 md:px-11
+    }
+}
