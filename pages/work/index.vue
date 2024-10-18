@@ -12,7 +12,7 @@
       <div
         class="min-h-[calc(100vh-108px)] w-full flex items-center justify-center py-10"
       >
-      <WorkBlogCard
+        <WorkBlogCard
           v-if="posts.length > 0"
           :author="posts[0].author"
           :author-picture="posts[0].authorPicture"
@@ -23,7 +23,10 @@
           :title-image="posts[0].titleImage"
         />
       </div>
-      <div :dangerouslySetInnerHTML="posts[0].body"  v-if="posts.length > 0"></div>
+      <div
+        :dangerouslySetInnerHTML="posts[0].body"
+        v-if="posts.length > 0"
+      ></div>
     </div>
     <!-- <div class="flex items-center justify-center flex-col prose prose-lg">
       <ContentRenderer :value="posts[0]">
@@ -49,6 +52,7 @@
         </div>
       </div>
     </div>
+    <TestMdRenderer :markdown="posts[3].body" v-if="posts.length > 0" />
   </div>
 </template>
 
@@ -57,25 +61,23 @@
 //   queryContent("blog").find()
 // );
 
-
-
-import { ref, onMounted } from 'vue'; // Import onMounted hook
+import { ref, onMounted } from "vue"; // Import onMounted hook
 
 const posts = ref([]);
 
 // Use fetch instead of useFetch for client-side request
 const fetchMarkdown = async () => {
   try {
-    const response = await fetch('/api/notion'); // Make sure the route is correct
+    const response = await fetch("/api/notion"); // Make sure the route is correct
     const data = await response.json();
 
     if (response.ok) {
       posts.value = data.blogPages; // Update the posts if the request is successful
     } else {
-      console.error('Error fetching markdown:', data);
+      console.error("Error fetching markdown:", data);
     }
   } catch (error) {
-    console.error('Error fetching markdown:', error);
+    console.error("Error fetching markdown:", error);
   }
 };
 
@@ -83,7 +85,6 @@ const fetchMarkdown = async () => {
 onMounted(() => {
   fetchMarkdown();
 });
-
 </script>
 
 <style scoped>
